@@ -67,6 +67,11 @@ RSpec.configure do |config|
   require 'capybara/rspec'
   require 'devise'
 
+  options = {js_errors: false}
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, options)
+end
+
   config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include FactoryBot::Syntax::Methods
   Capybara.javascript_driver = :poltergeist
