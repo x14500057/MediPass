@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 
+gem 'bootstrap_form', '~> 4.2'
+
 gem 'jquery-rails'
 
 gem 'devise', '~> 4.6', '>= 4.6.2'
