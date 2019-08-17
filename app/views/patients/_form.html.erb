@@ -1,0 +1,49 @@
+<div class="container" id="sign-up-form">
+  <div class="row">
+    <div class="col-sm-offset-4 col-sm-4">
+<%= form_with(model: patient, local: true) do |f| %>
+  <% if patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+
+      <ul>
+      <% patient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.text_field :firstname, 
+                     placeholder: 'First Name', 
+                     class: 'form-control' %>
+
+  <%= f.text_field :surname, 
+                    placeholder: 'Last Name', 
+                    class: 'form-control' %>
+
+  <%= f.text_field :phone_number, 
+                    placeholder: 'Phone Number', 
+                    class: 'form-control' %>
+
+  <%= f.text_field :address, 
+                    placeholder: 'Address', 
+                    class: 'form-control' %>
+
+  <%= f.date_select :datebirth, 
+                    placeholder: 'Date of Birth', 
+                    class: 'form-control' %>
+
+
+
+  
+  <div class="actions">
+    <%= f.submit 'Finish Sign Up', class: 'btn sign-up-button' %>
+  </div>
+<% end %>
+</div>
+</div>
+</div>
+
+
+

@@ -19,6 +19,11 @@
           <%= f.password_field :password_confirmation, 
                                placeholder: 'password confirmation', 
                                class: 'form-control' %>
+
+          <%= f.select :role, collection: User.roles.keys.to_a %>
+
+
+                  
           <%= f.submit 'Sign up', class: 'btn sign-up-button' %>
 
           <%= render "devise/shared/links" %>

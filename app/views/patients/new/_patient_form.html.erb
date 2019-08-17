@@ -1,0 +1,25 @@
+<%= bootstrap_form_for(@patient) do |f| %>
+  <%= f.text_field :firstname, 
+                     placeholder: 'First Name', 
+                     class: 'form-control' %>
+
+  <%= f.text_field :surname, 
+                    placeholder: 'Last Name', 
+                    class: 'form-control' %>
+
+  <%= f.text_field :phone_number, 
+                    placeholder: 'Phone Number', 
+                    class: 'form-control' %>
+
+  <%= f.text_field :address, 
+                    placeholder: 'Address', 
+                    class: 'form-control' %>
+
+  <%= f.date_select :datebirth, 
+                    placeholder: 'Date of Birth', 
+                    class: 'form-control' %>
+
+
+
+  <%= f.submit "Update Profile", class: 'form-control btn-success' %>
+<% end %>
