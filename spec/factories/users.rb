@@ -3,5 +3,7 @@ FactoryBot.define do
     sequence(:email) { |n| "test#{n}@test.com" }
     password {'123456'}
     password_confirmation {'123456'}
+    role { ApplicationLetter.roles.values.sample }
   end
 end
+
