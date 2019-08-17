@@ -10,15 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2019_08_17_004517) do
-
 ActiveRecord::Schema.define(version: 2019_08_17_024451) do
-
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
 
   create_table "doctors", force: :cascade do |t|
     t.string "firstname"
@@ -30,7 +25,6 @@ ActiveRecord::Schema.define(version: 2019_08_17_024451) do
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_doctors_on_user_id"
   end
-
 
   create_table "medical_records", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -48,8 +42,6 @@ ActiveRecord::Schema.define(version: 2019_08_17_024451) do
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_patients_on_user_id"
   end
-
-
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
