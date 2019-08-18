@@ -1,5 +1,5 @@
 FactoryBot.define do 
-  factory :user do
+  factory :doctor do
     sequence(:firstname) { |n| "test#{n}" }
     sequence(:surname) { |n| "test#{n}" }
     sequence(:address) { |n| "address#{n}" }

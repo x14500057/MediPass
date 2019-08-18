@@ -5,7 +5,7 @@
         <td class="medical_record-symptoms"><%= medical_record.symptoms %></td>
         <td class="medical_record-issued-by"><%= medical_record.doctor.firstname %></td>
         <td class="medical_record-date"><%= medical_record.date %></td>
-        <td><%= link_to 'Show', medical_record %></td>
+        <td class="showtest"><<%= link_to 'Show', medical_record %></td>
         <td><%= link_to 'Edit', edit_medical_record_path(medical_record) %></td>
         <td><%= link_to 'Destroy', medical_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
