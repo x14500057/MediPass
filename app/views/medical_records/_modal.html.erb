@@ -1,0 +1,40 @@
+<!-- Modal -->
+<div  class="modal myModal" 
+      tabindex="-1" 
+      role="dialog" 
+      aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="medical_record-issued-by"></span>
+        <button type="button" 
+                class="close" 
+                data-dismiss="modal" 
+                aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+          <div class="loaded-data">
+            <h2>Medical Record</h2>
+            <hr>
+            <p>Diagnostic</p>
+            <b><p id="modal-diagnostic">Not Recorded</p></b>
+            <hr>
+            <p>Symptoms</p>
+            <b><p id="modal-symptoms">Not Recorded</p></b>
+            <hr>
+            <p>Treatments</p>
+            <b><p id="modal-treatments">Not Recorded</p></b>
+            <hr>
+            
+
+            <div class="modal-actions">
+              <Button class="delete-emr btn btn-danger">Delete Medical Record</button>
+              <button class="edit-emr btn btn-success">Edit Medical Record</button>
+            </div>
+          </div><!-- loaded-data -->
+        </div><!-- modal-body -->
+    </div>
+  </div>
+</div>
