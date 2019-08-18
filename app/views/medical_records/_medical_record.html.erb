@@ -1,0 +1,11 @@
+
+        <tr>
+        <td><%= medical_record.id %></td>
+        <td><%= medical_record.diagnostic %></td>
+        <td><%= medical_record.symptoms %></td>
+        <td><%= medical_record.doctor.firstname %></td>
+        <td><%= medical_record.date %></td>
+        <td><%= link_to 'Show', medical_record %></td>
+        <td><%= link_to 'Edit', edit_medical_record_path(medical_record) %></td>
+        <td><%= link_to 'Destroy', medical_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>

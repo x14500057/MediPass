@@ -4,7 +4,25 @@
     </div><!-- side-menu -->
 
     <div id="main-content" class="col-sm-9">
+    	<h1>My Medical Records</h1>
+    	<table data-toggle="table" class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+	      <th>Diagnostic</th>
+	      <th>Symtoms</th>
+	      <th>Issued By</th>
+	      <th>Date</th>
+	      <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+    	<%= render @medical_records %>
+    	 </tbody>
+    </table>
     </div><!-- main-content -->
 
   </div><!-- row -->
 </div><!-- container -->
+
+

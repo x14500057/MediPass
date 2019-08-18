@@ -54,6 +54,7 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
+    bootstrap-table-rails (1.13.4)
     bootstrap_form (4.2.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -255,6 +256,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap-sass (~> 3.4, >= 3.4.1)
+  bootstrap-table-rails
   bootstrap_form (~> 4.2)
   byebug
   capybara (>= 2.15)
