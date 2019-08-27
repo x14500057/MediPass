@@ -1,4 +1,19 @@
 class Patient < ApplicationRecord
   belongs_to :user
-  has_many :medical_records, dependent: :destroy
+  has_many :medical_records, dependent: :destroy 
+
+  validates :firstname, presence:true, length: {minimum: 3, maximum: 15}
+  validates :surname, presence:true, length: {minimum: 3, maximum: 15}
+  validates :address, presence:true, length: {minimum: 10, maximum: 100}
+  validates_format_of :phone_number, :with => /\(?[0-9]{10}/,   :message => "- Phone numbers must be 10 digits long, in 08XXXXXXX format." 
+
+  def self.search(search)
+  	if search
+  		patient = Patient.find_by(firstname: search)
+  		
+  	else
+  		Patient.all
+  	end
+  end
 end
+

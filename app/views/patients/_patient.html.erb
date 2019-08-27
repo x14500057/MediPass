@@ -1,0 +1,10 @@
+<tr role="row medical_record-row" class="odd" id=<%= patient_path(patient.id) %>>
+  <td class=""><%= patient.id %></td>
+  <td class="sorting_1"><%= patient.firstname %></td>
+  <td>Dr.<%= patient.surname %></td>
+  <td></td>
+  <td><%= patient.datebirth %></td>
+  <td><%= link_to 'Show', patient_path(patient) %></td>
+  <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
+  <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

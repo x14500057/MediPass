@@ -5,12 +5,22 @@ class ApplicationController < ActionController::Base
 
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
+	helper_method :user_doctor?
+    def user_doctor?
+      user_signed_in? && current_user.role == "doctor"
+    end
+
+    helper_method :user_patient?
+    def user_patient?
+      user_signed_in? && current_user.role == "patient"
+    end
+
 	protected
 
-	        def configure_permitted_parameters
-	            devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
+    def configure_permitted_parameters
+        devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
 
-	        end
+    end
 
 	def after_sign_in_path_for(resource)
 

@@ -1,0 +1,28 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Add Prescription</h6>
+    </div>
+    <div class="card-body">
+        <%= simple_form_for([@medical_record, @medical_record.prescriptions.build]) do |form| %>
+
+          <div class="field">
+            <%= form.label :drug_name %>
+            <%= form.text_field :drug_name, id: 'rxterms'%>
+          </div>
+
+          <div class="field">
+            <%= form.label :drug_strength %>
+            <%= form.text_field :drug_strength %>
+          </div>
+
+          <div class="field">
+            <%= form.label :drug_code %>
+            <%= form.text_field :drug_code %>
+          </div>
+
+          <div class="actions">
+            <%= form.button :submit, class: "btn btn-success" %>
+          </div>
+        <% end %>
+    </div>
+</div>

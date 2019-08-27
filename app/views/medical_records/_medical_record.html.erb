@@ -1,11 +1,10 @@
-
-        <tr class="medical_record-row" id=<%= medical_record_path(medical_record.id) %>>
-        <td><%= medical_record.id %></td>
-        <td class="medical_record-diagnostic"><%= medical_record.diagnostic %></td>
-        <td class="medical_record-symptoms"><%= medical_record.symptoms %></td>
-        <td class="medical_record-issued-by"><%= medical_record.doctor.firstname %></td>
-        <td class="medical_record-date"><%= medical_record.date %></td>
-        <td class="showtest"><<%= link_to 'Show', medical_record %></td>
-        <td><%= link_to 'Edit', edit_medical_record_path(medical_record) %></td>
-        <td><%= link_to 'Destroy', medical_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<tr role="row medical_record-row" class="odd" id=<%= medical_record_path(medical_record.id) %>>
+  <td class=""><%= medical_record.id %></td>
+  <td class="sorting_1"><%= medical_record.diagnostic %></td>
+  <td>Dr.<%= medical_record.symptoms %></td>
+  <td><%= medical_record.doctor.firstname %></td>
+  <td><%= medical_record.date %></td>
+  <td><%= link_to 'Show', medical_record_path(medical_record) %></td>
+  <td><%= link_to 'Edit', edit_medical_record_path(medical_record) %></td>
+  <td><%= link_to 'Destroy', medical_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

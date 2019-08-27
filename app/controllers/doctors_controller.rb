@@ -13,7 +13,7 @@ class DoctorsController < ApplicationController
   end
 
   # GET /doctors/new
- def new
+  def new
     @doctor = Doctor.new 
     @doctor.user_id = current_user.id
     respond_to do |format|
@@ -21,6 +21,10 @@ class DoctorsController < ApplicationController
     format.json {
     render json: @doctor } 
   end
+
+
+
+
   end
 
   def signedinuserdoctor
@@ -88,4 +92,5 @@ class DoctorsController < ApplicationController
     def doctor_params
       params.require(:doctor).permit(:firstname, :surname, :address, :phone_number).merge(user_id: current_user.id)
     end
+
 end

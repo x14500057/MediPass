@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :prescriptions
   resources :doctors
   resources :medical_records 
 # end
@@ -8,13 +9,23 @@ Rails.application.routes.draw do
   # (#) respresents a method
   # calls the pages controller
   # executes the index public method
-  root to: 'pages#index' 
+  # root to: 'devise/sessions#new' 
 
+
+  resources :patients do
+  	resources :medical_records 
+     
+  end
+
+  resources :medical_records do 
+      resources :prescriptions
+    end
+  
   resources :patients
 	devise_for :users
 
 	devise_scope :user do
-	  get 'login', to: 'devise/sessions#new'
+	  root to: 'devise/sessions#new'
 	end
 
 	devise_scope :user do

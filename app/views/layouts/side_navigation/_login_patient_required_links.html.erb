@@ -1,0 +1,31 @@
+<!-- Nav Item - Dashboard -->
+      <!-- Heading -->
+
+<li class="nav-item active">
+  <a class="nav-link">
+    
+    <%= link_to 'View Records', patient_medical_records_path(current_user), method: :get,  :class=>"nav-link" %>
+</li>
+
+<!-- Divider -->
+<hr class="sidebar-divider">
+
+<li class="nav-item active">
+  <a class="nav-link">
+    
+    <%= link_to 'View Prescriptions', patient_medical_records_path(current_user), method: :get,  :class=>"nav-link" %>
+</li>
+
+<!-- Divider -->
+<hr class="sidebar-divider">
+
+
+ <li class="nav-item active">
+  <a class="nav-link">
+    
+    <%= link_to 'My Account', '/signedinuserpatient', method: :get,  :class=>"nav-link" %>
+</li>
+
+<!-- Divider -->
+<hr class="sidebar-divider">
+      

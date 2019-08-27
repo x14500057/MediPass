@@ -20,19 +20,26 @@
  *= require bootstrap-table/bootstrap-table
  */
 
+
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
 
 /*variables*/
 @import "base/variables";
 
-// Default styles
+/* Default styles */
 @import "base/default";
 
-/* Partials - main css files*/
+/* Partials - main css files */
 @import "partials/*";
-@import "partials/layout/*";
+
 @import "partials/medical_records/*";
+@import "partials/*";
+
+
 
 // Media queries for a responsive design
 @import "responsive/*";

@@ -1,9 +1,44 @@
-<div id="single-post-content" class="container">
-  <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-      <div class="posted-by">Issued By Dr.<%= @medical_record.doctor.firstname %></div>
-      <h3 class="diagnostic"><%= @medical_record.diagnostic %></h3>
-      <p><%= @medical_record.symptoms %></p>
+
+<div class="row" style="background-color: blue;">
+    <div class="col-6" style="background-color: black;">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Issued By Dr.<%= @medical_record.doctor.firstname %></h6>
+            </div>
+            <div class="card-body">
+              <h2>Medical Record</h2>
+              <hr>
+              <p>Diagnostic</p>
+              <b><%= @medical_record.diagnostic %></b>
+              <hr>
+              <p>Symptoms</p>
+              <b><%= @medical_record.symptoms %></b>
+              <hr>
+              <p>Treatments</p>
+              <b><%= @medical_record.treatment %></b>
+              <hr>
+              <div class="modal-actions">
+                  <button class="delete-emr btn btn-danger">Delete Medical Record</button>
+                  <button class="edit-emr btn btn-success">Edit Medical Record</button>
+              </div>
+            </div>
+        </div>
     </div>
-  </div><!-- row -->
+    <div class="col-6">
+         <%= render @medical_record.prescriptions %>
+ 
+    </div>
+
+
+<!-- <h2 class="subtitle is-5"><strong><%= @medical_record.prescriptions.count %></strong> Prescriptions</h2> -->
+
+
+</div>
+
+
+
+//new 
+<div class="col-3">
+    <%= render 'prescriptions/form' %>
+
 </div>

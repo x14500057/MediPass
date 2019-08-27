@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Prescriptions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Drug name</th>
+      <th>Drug strength</th>
+      <th>Drug code</th>
+      <th>Patient</th>
+      <th>Doctor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @prescriptions.each do |prescription| %>
+      <tr>
+        <td><%= prescription.drug_name %></td>
+        <td><%= prescription.drug_strength %></td>
+        <td><%= prescription.drug_code %></td>
+        <td><%= prescription.patient %></td>
+        <td><%= prescription.doctor %></td>
+        <td><%= link_to 'Show', prescription %></td>
+        <td><%= link_to 'Edit', edit_prescription_path(prescription) %></td>
+        <td><%= link_to 'Destroy', prescription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Prescription', new_prescription_path %>

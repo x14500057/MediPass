@@ -7,12 +7,61 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/17.0.3/autocomplete-lhc.min.css' rel="stylesheet">
+    
   </head>
 
   <body>
-    <%= render 'layouts/navigation' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+   <div>
+    <%= render 'layouts/side_navigation' %>
+    </div>
+    <%= render 'layouts/top_navigation' %>
+    <!-- <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p> -->
+  
+
     <%= yield %>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- example CDN-- you may choose another source --> 
+  <script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/17.0.3/autocomplete-lhc.min.js'></script>
+
+  <script>
+    // Create drug list for the name field
+    new Def.Autocompleter.Search('rxterms',
+      'https://clinicaltables.nlm.nih.gov/api/rxterms/v3/search?ef=STRENGTHS_AND_FORMS,RXCUIS');
+      
+    // Create an initially empty list for the strength field
+    new Def.Autocompleter.Prefetch('drug_str', []);
+      
+    // Populate the strength list after the user selects a drug name
+    Def.Autocompleter.Event.observeListSelections('rxterms', function() {
+      var drugField = $('#rxterms')[0];
+      var drugName = drugField.value;
+      var drugAutocomp = drugField.autocomp;
+      var strengths = drugAutocomp.getItemExtraData(drugName)['STRENGTHS_AND_FORMS'];
+      alert(strengths);
+      var rxcuis = drugAutocomp.getItemExtraData(drugName)['RXCUIS'];
+      if (strengths)
+        $('#drug_stry')[0].autocomp.setListAndField(strengths, rxcuis);
+    });
+
+    // Fill in the RxCUI field after the user selects a strength
+
+    Def.Autocompleter.Event.observeListSelections('drug_str', function(data) {
+      $('#rxcui')[0].value = data.item_code;
+    })
+  </script>
+
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
   </body>
 </html>

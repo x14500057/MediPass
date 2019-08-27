@@ -4,7 +4,8 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
-    @patients = Patient.all
+    @patients = Patient.search(params[:search])
+    
   end
 
   # GET /patients/1
@@ -16,17 +17,19 @@ class PatientsController < ApplicationController
   def new
     @patient = Patient.new 
     @patient.user_id = current_user.id
-    puts("\n\n\n"+current_user.id.to_s+"\n\n\n")
     respond_to do |format|
     format.html # new.html.erb 
     format.json {
     render json: @patient } 
-  end
+    end
   end
 
   # GET /patients/1/edit
   def edit
+    
   end
+
+  
 
   def signedinuserpatient
     patient = Patient.find_by_user_id(current_user.id) 
@@ -45,7 +48,9 @@ class PatientsController < ApplicationController
 
     respond_to do |format|
       if @patient.save
+        flash[:info] = "Invalid email or password"
         format.html { redirect_to @patient, notice: 'Patient was successfully created.' }
+        
         format.json { render :show, status: :created, location: @patient }
       else
         format.html { render :new }
@@ -84,8 +89,10 @@ class PatientsController < ApplicationController
       @patient = Patient.find(params[:id])
     end
 
+
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.require(:patient).permit(:firstname, :surname, :phone_number, :address, :datebirth).merge(user_id: current_user.id)
+      params.require(:patient).permit(:firstname, :surname, :phone_number, :address, :datebirth, :search).merge(user_id: current_user.id)
     end
 end

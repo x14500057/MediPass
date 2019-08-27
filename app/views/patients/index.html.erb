@@ -1,37 +1,61 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Patients</h1>
+<div class="container-fluid"style=" width:96%; ">
 
-<table>
-  <thead>
-    <tr>
-      <th>Firstname</th>
-      <th>Surname</th>
-      <th>Phone number</th>
-      <th>Address</th>
-      <th>Datebirth</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <!-- Page Heading -->
+  <h1 class="h1 mb-2 text-gray-800">Patients</h1>
+      
+  <!-- DataTales Example -->
+  <div class="card shadow mb-6">
+    <div class="col-sm-6 col-md-8">
+      <div id="dataTable_filter" class="dataTables_filter">
 
-  <tbody>
-    <% @patients.each do |patient| %>
-      <tr>
-        <td><%= patient.firstname %></td>
-        <td><%= patient.surname %></td>
-        <td><%= patient.phone_number %></td>
-        <td><%= patient.address %></td>
-        <td><%= patient.datebirth %></td>
-        <td><%= patient.user %></td>
-        <td><%= link_to 'Show', patient %></td>
-        <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
-        <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+        
+        <%= form_tag(patients_path, method: :get) do %>
+          <%= text_field_tag(:search, params[:search]) %>
+          <%= submit_tag ("Search") %>
+        <% end %>
 
-<%= link_to 'New Patient', new_patient_path %>
+
+
+
+
+      </div>
+            
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+          
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                <thead>
+                  <tr role="row">
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 61px;">Patient ID</th>
+                    <th class="sorting_desc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" aria-sort="descending" style="width: 77px;">First Name</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 50px;">Surname</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Email</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Date of Birth</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 40px;"></th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 40px;"></th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 40px;"></th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                    
+                    <%= render @patients %>
+                             
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

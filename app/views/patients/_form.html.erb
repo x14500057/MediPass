@@ -14,31 +14,35 @@
     </div>
   <% end %>
 
+  <%= f.label :Firstname %><br />
   <%= f.text_field :firstname, 
                      placeholder: 'First Name', 
                      class: 'form-control' %>
 
+  <%= f.label :Surname %><br />
   <%= f.text_field :surname, 
                     placeholder: 'Last Name', 
                     class: 'form-control' %>
 
+  <%= f.label :Phone_Number %><br />
   <%= f.text_field :phone_number, 
                     placeholder: 'Phone Number', 
                     class: 'form-control' %>
 
+  <%= f.label :Address %><br />
   <%= f.text_field :address, 
                     placeholder: 'Address', 
                     class: 'form-control' %>
+                    <br>
 
+  <%= f.label :Date_Of_Birth %><br />
   <%= f.date_select :datebirth, 
                     placeholder: 'Date of Birth', 
                     class: 'form-control' %>
-
-
-
   
+  <hr>
   <div class="actions">
-    <%= f.submit 'Finish Sign Up', class: 'btn sign-up-button' %>
+    <%= f.submit 'Finish Sign Up', class: 'btn btn-info' %>
   </div>
 <% end %>
 </div>

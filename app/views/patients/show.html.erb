@@ -1,34 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Firstname:</strong>
-  <%= @patient.firstname %>
-</p>
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">My Account</h6>
+    </div>
+    <div class="card-body">
+        
+            <hr>
+            <p>First Name</p>
+            <b><%= @patient.firstname %></p></b>
+            <hr>
+            <p>Last Name</p>
+            <b><%= @patient.surname %></b>
+            <hr>
+            <p>Phone Number</p>
+            <b><%= @patient.phone_number %></b>
+            <hr>
+            <p>Address</p>
+            <b><%= @patient.address %></b>
+            <hr>
+            <p>Date of Birth</p>
+            <b><%= @patient.datebirth %></b>
+            <hr>
+            
 
-<p>
-  <strong>Surname:</strong>
-  <%= @patient.surname %>
-</p>
+        <% if user_doctor? %> 
 
-<p>
-  <strong>Phone number:</strong>
-  <%= @patient.phone_number %>
-</p>
+            <%= link_to 'Add Medical Record', new_medical_record_path, :class=> 'btn btn-success' %>
 
-<p>
-  <strong>Address:</strong>
-  <%= @patient.address %>
-</p>
+            <% end %>
+            <%= link_to 'Edit', edit_patient_path(@patient), :class => 'btn btn-info' %>
+            <%= link_to 'Destroy', @patient, method: :delete, :class=> 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
 
-<p>
-  <strong>Datebirth:</strong>
-  <%= @patient.datebirth %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @patient.user %>
-</p>
-
-<%= link_to 'Edit', edit_patient_path(@patient) %> |
-<%= link_to 'Back', patients_path %>
+              
+    </div>
+  </div>
+</div>
