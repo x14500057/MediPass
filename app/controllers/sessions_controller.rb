@@ -17,13 +17,13 @@ class SessionsController < Devise::SessionsController
 		def
 	end
 
-	# if user.doctor? 
+	if user.doctor? 
 			
-	# 		"/signedinuserdoctor" 
-	# 	elsif user.patient?
+			"/signedinuserdoctor" 
+		elsif user.patient?
 			
-	# 		"/signedinuserpatient"
-	# 	else
-	# 		root_path
-	# 	end
+			"/signedinuserpatient"
+		else
+			root_path
+		end
 end
