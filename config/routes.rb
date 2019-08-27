@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # (#) respresents a method
   # calls the pages controller
   # executes the index public method
-  root to: 'devise/sessions#new' 
+  
 
 
   resources :patients do
@@ -25,11 +25,10 @@ Rails.application.routes.draw do
 	devise_for :users
 
 	devise_scope :user do
-	  root to: 'devise/sessions#new'
-	end
-
-	devise_scope :user do
-	  get 'signup', to: 'devise/registrations#new'
+    root to: 'devise/sessions#new' 
+     get "signup", to: "devise/registrations#new"
+     get "login", to: "devise/sessions#new"
+     get "logout", to: "devise/sessions#destroy"
 	end
 
 	get '/signedinuserpatient' => 'patients#signedinuserpatient'
