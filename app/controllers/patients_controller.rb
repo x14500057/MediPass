@@ -11,6 +11,7 @@ class PatientsController < ApplicationController
   # GET /patients/1
   # GET /patients/1.json
   def show
+    
   end
 
   # GET /patients/new
@@ -28,8 +29,6 @@ class PatientsController < ApplicationController
   def edit
     
   end
-
-  
 
   def signedinuserpatient
     patient = Patient.find_by_user_id(current_user.id) 
