@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # (#) respresents a method
   # calls the pages controller
   # executes the index public method
-  # root to: 'devise/sessions#new' 
+  root to: 'devise/sessions#new' 
 
 
   resources :patients do
