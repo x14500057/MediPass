@@ -1,12 +1,30 @@
-<%= render 'medical_records/modal' %>
+<div class="container" id="sign-up-form">
 
-<div class="container">
-  <div class="row">
+    <h1>Welcome to MediPass</h1>
+    <h3>What would you like to do?</h3>
+    <hr><br>
 
-  	
-    <%= render 'pages/index/side_menu' %>
-    <%= render 'pages/index/main_content' %>
-  </div><!-- row -->
-</div><!-- container -->
+    <div class="container">
+  		<div class="row">
+    		<div class="col">
+    			<div class="card" style="width: 18rem;">
+					<div class="card-body">
+						<h5 class="card-title">Sign In</h5>
+						<%= link_to('Sign In', new_user_session_path) %>
+					</div>
+				</div>
+			</div>
+   		    <div class="col">
+    			<div class="card" style="width: 18rem;">
+					<div class="card-body">
+						<h5 class="card-title">Register</h5>
+						<%= link_to('Register', new_user_registration_path) %>
+					</div>
+				</div>
+			</div>
+    
+  		</div>
+	</div>
+</div>
 
 

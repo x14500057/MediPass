@@ -1,6 +1,6 @@
 
-<div class="row" style="background-color: blue;">
-    <div class="col-6" style="background-color: black;">
+<div class="row">
+    <div class="col-7" ">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Issued By Dr.<%= @medical_record.doctor.firstname %></h6>
@@ -24,21 +24,18 @@
             </div>
         </div>
     </div>
-    <div class="col-6">
-         <%= render @medical_record.prescriptions %>
- 
+
+    
+      <div class="col-4">
+    
+      <%= render 'prescriptions/form' %>
+  
     </div>
-
-
-<!-- <h2 class="subtitle is-5"><strong><%= @medical_record.prescriptions.count %></strong> Prescriptions</h2> -->
-
 
 </div>
 
+<h2 class="subtitle is-5"><strong><%= @medical_record.prescriptions.count %></strong> Prescriptions</h2>
 
-
-//new 
-<div class="col-3">
-    <%= render 'prescriptions/form' %>
-
+<div class="col-6">
+   <%= render @medical_record.prescriptions %>
 </div>

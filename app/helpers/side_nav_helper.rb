@@ -9,5 +9,4 @@ module SideNavHelper
 	      'layouts/side_navigation/not_signed_in_side_navigation'
 	    end
  	end
- 	
 end

@@ -5,13 +5,15 @@ class PatientsController < ApplicationController
   # GET /patients.json
   def index
     @patients = Patient.search(params[:search])
-    
   end
 
   # GET /patients/1
   # GET /patients/1.json
   def show
-    
+
+  @patient = Patient.find(params[:id])
+    # @patient = Patient.find_by_user_id(current_user.id)
+    @medical_records = @patient.medical_records 
   end
 
   # GET /patients/new

@@ -1,7 +1,9 @@
 class MedicalRecordsController < ApplicationController
 
 	def index
-		@patient = Patient.find_by(params[current_user.id])
+		# @patient = Patient.find_by(params[current_user.id]
+		@user = User.find_by(params[current_user.id])
+		@patient = @user.patient
 		@medical_records = @patient.medical_records
 	end
 
@@ -16,5 +18,4 @@ class MedicalRecordsController < ApplicationController
    def new
     @medical_record = MedicalRecord.new
   end
-
 end

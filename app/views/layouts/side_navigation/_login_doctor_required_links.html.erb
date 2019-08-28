@@ -1,44 +1,25 @@
-<!-- Nav Item - Dashboard -->
-      <!-- Heading -->
-
-<li class="nav-item active">
-  <a class="nav-link" href="index.html">
-    <i class="fas fa-fw fa-tachometer-alt"></i>
-    <span>Doctor</span></a>
-</li>
-<br>
-<br>
-
-<div class="sidebar-heading">
-  Patients
-</div>
-
 <li class="nav-item active">
   <a class="nav-link">
-    
-    <%= link_to 'Patients', patients_path, method: :get,  :class=>"nav-link" %>
-</li>
-
-
-
-<li class="nav-item active">
-  <a class="nav-link" href="index.html">
-    <i class="fas fa-fw fa-tachometer-alt"></i>
-    <span>My Patients</span></a>
+    <%= link_to 'View Patients', patients_path, method: :get,  :class=>"nav-link" %>
 </li>
 
 <!-- Divider -->
 <hr class="sidebar-divider">
 
-<!-- Heading -->
-<div class="sidebar-heading">
-  Account
-</div>
-
- <li class="nav-item active">
-  <a class="nav-link" href="index.html">
-    <i class="fas fa-fw fa-tachometer-alt"></i>
-    <span>My Account</span></a>
+<li class="nav-item active">
+  <a class="nav-link">
+    <%= link_to 'My Patients', patients_path, method: :get,  :class=>"nav-link" %>
 </li>
 
-      
+<!-- Divider -->
+<hr class="sidebar-divider">
+
+
+ <li class="nav-item active">
+  <a class="nav-link">
+    
+    <%= link_to 'My Account', '/signedinuserdoctor', method: :get,  :class=>"nav-link" %>
+</li>
+
+<!-- Divider -->
+<hr class="sidebar-divider">

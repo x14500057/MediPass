@@ -1,0 +1,18 @@
+<%= bootstrap_form_for(@medical_record) do |f| %>
+  <%= f.text_field :diagnostic, 
+                     placeholder: 'Diagnostic', 
+                     class: 'form-control' %>
+
+  <%= f.text_field :symptoms, 
+                    placeholder: 'Symptoms', 
+                    class: 'form-control' %>
+
+  <%= f.text_field :treatment, 
+                    placeholder: 'Treatments', 
+                    class: 'form-control' %>
+
+
+
+
+  <%= f.submit "Add Medical Record", class: 'form-control btn-success' %>
+<% end %>
