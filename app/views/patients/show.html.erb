@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+
 <div class="container">
   <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -9,7 +10,7 @@
         
             <hr>
             <p>First Name</p>
-            <b><%= @patient.firstname %></p></b>
+            <b><%= @patient.fullname %></p></b>
             <hr>
             <p>Last Name</p>
             <b><%= @patient.surname %></b>
@@ -27,9 +28,9 @@
 
         <% if user_doctor? %> 
 
-            <%= link_to 'Add Medical Record', new_medical_record_path, :class=> 'btn btn-success' %>
+            <%= link_to 'Add Medical Record', new_patient_medical_record_path(@patient), :class=> 'btn btn-success' %>
 
-            <% end %>
+        <% end %>
             <%= link_to 'Edit', edit_patient_path(@patient), :class => 'btn btn-info' %>
             <%= link_to 'Destroy', @patient, method: :delete, :class=> 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
 

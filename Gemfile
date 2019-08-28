@@ -35,6 +35,8 @@ gem 'devise', '~> 4.6', '>= 4.6.2'
 
 gem 'faker'
 
+gem 'draper'
+
 
 #Simple Form
 gem 'simple_form', '~> 4.1'

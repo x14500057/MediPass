@@ -11,9 +11,10 @@ class PatientsController < ApplicationController
   # GET /patients/1.json
   def show
 
-  @patient = Patient.find(params[:id])
-    # @patient = Patient.find_by_user_id(current_user.id)
+    patient = Patient.find(params[:id])
+    @patient = PatientDecorator.new(patient)
     @medical_records = @patient.medical_records 
+    session[:patient_id] = patient.id
   end
 
   # GET /patients/new
