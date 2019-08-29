@@ -24,6 +24,10 @@ class PrescriptionsController < ApplicationController
         @status_code = @result[:status_code]
         @status_message = @result[:status_message].to_s
 
+        puts("\n\n code:"+ @status_code.to_s+"\n\n")
+
+        puts("\n\n message:"+ @status_message+"\n\n")
+
         if @status_code.eql? 0
            respond_to do |format|
            format.html { redirect_to @medical_record }
