@@ -18,14 +18,14 @@ class MedicalRecordsController < ApplicationController
 
    # GET /patients/new
   def new
-    puts("\n\n\n test1 - create method \n\n\n")
+    # puts("\n\n\n test1 - create method \n\n\n")
     @medical_record = MedicalRecord.new 
-    @medical_record.doctor_id = current_user.id
+    # # @medical_record.doctor_id = current_user.id
 
-    respond_to do |format|
-    format.html # new.html.erb 
-    format.json {
-    render json: @medical_record } 
+    # respond_to do |format|
+    # format.html # new.html.erb 
+    # format.json {
+    # render json: @medical_record } 
     end
   end
 
