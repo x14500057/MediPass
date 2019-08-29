@@ -113,7 +113,6 @@ GEM
     headless (2.3.1)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
-    isdrugallergic (0.0.2)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
     jquery-rails (4.3.5)
@@ -282,7 +281,6 @@ DEPENDENCIES
   factory_bot_rails
   faker
   headless
-  isdrugallergic (~> 0.0.2)
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
