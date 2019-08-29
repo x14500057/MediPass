@@ -53,6 +53,6 @@ class MedicalRecordsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def medical_record_params
-    params.require(:medical_record).permit(:diagnostic, :symptoms, :treatment, :date).merge(patient_id: session[:patient_id], doctor_id: doctor_id)
+    params.require(:medical_record).permit(:diagnostic, :symptoms, :treatment, :date).merge(patient_id: session[:patient_id], doctor_id: session[:doctor_id])
   end
 end

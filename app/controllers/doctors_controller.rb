@@ -28,12 +28,15 @@ class DoctorsController < ApplicationController
   end
 
   def signedinuserdoctor
-    doctor = Doctor.find_by_user_id(current_user.id) 
-    if doctor.nil?
+    @doctor = Doctor.find_by_user_id(current_user.id) 
+    session[:doctor_id] = doctor.id
+    if @doctor.nil?
       redirect_to "/doctors/new"
     else
       @doctor = Doctor.find_by_user_id(current_user.id) 
+      session
       redirect_to "/doctors/#{@doctor.id}" 
+
     end
   end
 
