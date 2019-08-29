@@ -26,7 +26,7 @@ class MedicalRecordsController < ApplicationController
     # format.html # new.html.erb 
     # format.json {
     # render json: @medical_record } 
-    end
+    # end
   end
 
   # POST /prescriptions
