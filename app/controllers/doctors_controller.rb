@@ -16,15 +16,12 @@ class DoctorsController < ApplicationController
   def new
     @doctor = Doctor.new 
     @doctor.user_id = current_user.id
+    
     respond_to do |format|
     format.html # new.html.erb 
     format.json {
     render json: @doctor } 
-  end
-
-
-
-
+    end
   end
 
   def signedinuserdoctor
