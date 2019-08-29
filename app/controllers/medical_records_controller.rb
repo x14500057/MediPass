@@ -2,9 +2,7 @@ class MedicalRecordsController < ApplicationController
 	before_action :set_medical_record, only: [:show, :edit, :update, :destroy]
 
 	def index
-		# @patient = Patient.find_by(params[current_user.id]
 		@patient = Patient.find_by_user_id(current_user.id)
-		# @patient = @user.patient
 		@medical_records = @patient.medical_records
 	end
 
@@ -20,7 +18,7 @@ class MedicalRecordsController < ApplicationController
   def new
     # puts("\n\n\n test1 - create method \n\n\n")
     @medical_record = MedicalRecord.new 
-    puts("\n\n\n"+session[:doctor_id].to_s+"\n\n")
+    puts("\n\n\n doctor_id"+session[:doctor_id].to_s+"\n\n")
     respond_to do |format|
     format.html # new.html.erb 
     format.json {
@@ -31,7 +29,8 @@ class MedicalRecordsController < ApplicationController
   # POST /prescriptions
   # POST /prescriptions.json
   def create
-    puts("\n\n\n"+session[:doctor_id].to_s+"\n\n")
+    puts("\n\n\n doctor_id"+session[:doctor_id].to_s+"\n\n")
+    puts("\n\n\n doctor_id"+session[:patient_id].to_s+"\n\n")
     puts("\n\n\n test1 - create method \n\n\n")
     @medical_record = MedicalRecord.new(medical_record_params)
 
