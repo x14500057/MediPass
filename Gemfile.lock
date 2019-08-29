@@ -282,7 +282,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   headless
-  isdrugallergic (~> 0.0.2)
+  isdrugallergic (= 0.0.2)
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
