@@ -20,18 +20,18 @@ class MedicalRecordsController < ApplicationController
   def new
     # puts("\n\n\n test1 - create method \n\n\n")
     @medical_record = MedicalRecord.new 
-    # # @medical_record.doctor_id = current_user.id
-
-    # respond_to do |format|
-    # format.html # new.html.erb 
-    # format.json {
-    # render json: @medical_record } 
-    # end
+    @doctor = Doctor.find_by_user_id(current_user.id)
+    respond_to do |format|
+    format.html # new.html.erb 
+    format.json {
+    render json: @medical_record } 
+    end
   end
 
   # POST /prescriptions
   # POST /prescriptions.json
   def create
+    puts("\n\n\n test1 - create method \n\n\n")
     @medical_record = MedicalRecord.new(medical_record_params)
 
     respond_to do |format|
@@ -53,6 +53,6 @@ class MedicalRecordsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def medical_record_params
-    params.require(:medical_record).permit(:diagnostic, :symptoms, :treatment, :date).merge(patient_id: session[:patient_id], doctor_id: current_user.id)
+    params.require(:medical_record).permit(:diagnostic, :symptoms, :treatment, :date).merge(patient_id: session[:patient_id], doctor_id: doctor_id)
   end
 end
