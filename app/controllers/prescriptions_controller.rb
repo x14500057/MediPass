@@ -1,15 +1,55 @@
 class PrescriptionsController < ApplicationController
   before_action :set_prescription, only: [:show, :edit, :update, :destroy]
 
-  # GET /prescriptions
-  # GET /prescriptions.json
-  
 
-
+  #create new prescription method
   def create
+
+        #grab the medical record object by its id and store in local variable
         @medical_record = MedicalRecord.find(params[:medical_record_id])
-        @prescriptions = @medical_record.prescriptions.create(params[:prescription].permit(:drug_name, :drug_strength, :drug_code))
-        redirect_to medical_record_path(@medical_record)
+
+        #grab the associated patient by find the id sotred in the session
+        @patient = Patient.find_by(params[session[:patient_id]])
+
+        #grab all allergies associated with the patient
+        @allergies = Allergy.all
+
+        #grab the result from the check_allergy method by passing in two parameters;
+        #1. the prescribed drug
+        #2. the patients allergies
+        @result = Checkallergy.check_allergy("adderall", @allergies)
+        puts("\n\n response:"+ @result.first.to_s+"\n\n")
+
+        #set the status code and status message to local variables accordingly
+        @status_code = @result[:status_code]
+        @status_message = @result[:status_message].to_s
+
+        if @status_code.eql? 0
+           respond_to do |format|
+           format.html { redirect_to @medical_record }
+           flash[:danger] = @status_message
+         end
+        else
+          @prescriptions = @medical_record.prescriptions.create(params[:prescription].permit(:drug_name, :drug_strength, :drug_code))
+          redirect_to medical_record_path(@medical_record)
+          flash[:success] = @status_message
+        end
+
+        
+
+
+
+    # respond_to do |format|
+    #   if @medical_record.save
+    #     format.html { redirect_to @medical_record, notice: 'Medical Record was successfully created.' }
+    #     format.json { render :show, status: :created, location: @medical_record }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @medical_record.errors, status: :unprocessable_entity }
+    #   end
+    # end
+    
+        
     end
 
 

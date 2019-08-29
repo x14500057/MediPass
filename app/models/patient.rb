@@ -1,5 +1,6 @@
 class Patient < ApplicationRecord
   belongs_to :user
+  has_many :allergies
   has_many :medical_records, dependent: :destroy 
 
   validates :firstname, presence:true, length: {minimum: 3, maximum: 15}

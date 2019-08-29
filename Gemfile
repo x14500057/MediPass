@@ -37,6 +37,8 @@ gem 'faker'
 
 gem 'draper'
 
+gem 'isdrugallergic', '~> 0.0.2'
+
 
 #Simple Form
 gem 'simple_form', '~> 4.1'

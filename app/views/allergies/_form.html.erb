@@ -1,0 +1,27 @@
+<%= form_with(model: allergy, local: true) do |form| %>
+  <% if allergy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(allergy.errors.count, "error") %> prohibited this allergy from being saved:</h2>
+
+      <ul>
+      <% allergy.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :allergy_name %>
+    <%= form.text_field :allergy_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :patient_id %>
+    <%= form.text_field :patient_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

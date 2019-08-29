@@ -14,6 +14,7 @@ class PatientsController < ApplicationController
     patient = Patient.find(params[:id])
     @patient = PatientDecorator.new(patient)
     @medical_records = @patient.medical_records 
+    @allergies = @patient.allergies 
     session[:patient_id] = patient.id
   end
 
