@@ -31,6 +31,7 @@ class MedicalRecordsController < ApplicationController
   # POST /prescriptions
   # POST /prescriptions.json
   def create
+    puts("\n\n\n"+session[:doctor_id]+"\n\n")
     puts("\n\n\n test1 - create method \n\n\n")
     @medical_record = MedicalRecord.new(medical_record_params)
 
