@@ -16,7 +16,7 @@ class PatientsController < ApplicationController
     @medical_records = @patient.medical_records 
     @allergies = @patient.allergies 
     session[:patient_id] = patient.id
-    puts("\n\n\n"+patient.id.to_s+"\")
+    puts("\n\n\n"+patient.id.to_s+"\n\n\n")
   end
 
   # GET /patients/new
