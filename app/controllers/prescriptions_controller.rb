@@ -18,7 +18,7 @@ class PrescriptionsController < ApplicationController
         #1. the prescribed drug
         #2. the patients allergies
         @result = Checkallergy.check_allergy("adderall", @allergies)
-        puts("\n\n response:"+ @result.first.to_s+"\n\n")
+        puts("\n\n response:"+ @result.to_s+"\n\n")
 
         #set the status code and status message to local variables accordingly
         @status_code = @result[:status_code]
