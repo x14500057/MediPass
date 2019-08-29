@@ -3,8 +3,8 @@ class MedicalRecordsController < ApplicationController
 
 	def index
 		# @patient = Patient.find_by(params[current_user.id]
-		@user = User.find_by(params[current_user.id])
-		@patient = @user.patient
+		@patient = Patient.find_by_user_id(current_user.id)
+		# @patient = @user.patient
 		@medical_records = @patient.medical_records
 	end
 
@@ -29,13 +29,11 @@ class MedicalRecordsController < ApplicationController
     end
   end
 
-
   # POST /prescriptions
   # POST /prescriptions.json
   def create
     @medical_record = MedicalRecord.new(medical_record_params)
 
-    
     respond_to do |format|
       if @medical_record.save
         format.html { redirect_to @medical_record, notice: 'Medical Record was successfully created.' }
@@ -47,18 +45,14 @@ class MedicalRecordsController < ApplicationController
     end
   end   
   
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_medical_record
+    @medical_record = MedicalRecord.find(params[:id])
+  end
 
-
-  
-
-    private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_medical_record
-      @medical_record = MedicalRecord.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def medical_record_params
-      params.require(:medical_record).permit(:diagnostic, :symptoms, :treatment, :date).merge(patient_id: session[:patient_id], doctor_id: current_user.id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def medical_record_params
+    params.require(:medical_record).permit(:diagnostic, :symptoms, :treatment, :date).merge(patient_id: session[:patient_id], doctor_id: current_user.id)
+  end
 end
