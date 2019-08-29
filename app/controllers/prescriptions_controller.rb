@@ -22,7 +22,7 @@ class PrescriptionsController < ApplicationController
 
         #set the status code and status message to local variables accordingly
         @status_code = @result[:status_code]
-        @status_message = @result[:status_message].to_s
+        @status_message = @result[:status_message]
 
         puts("\n\n code:"+ @status_code.to_s+"\n\n")
 
