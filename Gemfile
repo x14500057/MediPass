@@ -37,7 +37,7 @@ gem 'faker'
 
 gem 'draper'
 
-gem 'isdrugallergic', '0.0.4'
+gem 'isdrugallergic', '0.0.5'
 
 
 #Simple Form
