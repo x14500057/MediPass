@@ -4,8 +4,7 @@ class MedicalRecordsController < ApplicationController
 
 	def index
 
-    @user = User.find_by(params[current_user.id])
-    @patient = @user.patient
+    @patient = Patient.find_by(params[session[:patient_id]])
     @medical_records = @patient.medical_records
     # search = params[:search]
     # # category = params[:category]
