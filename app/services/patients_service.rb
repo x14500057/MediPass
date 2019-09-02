@@ -11,5 +11,5 @@ class CreatePatientProfile < ApplicationService
     return true
   end
     
-  end
+
 end
