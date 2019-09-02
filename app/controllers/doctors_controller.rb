@@ -15,7 +15,7 @@ class DoctorsController < ApplicationController
   # GET /doctors/new
   def new
     @doctor = Doctor.new 
-    @doctor.user_id = current_user.id
+    
     
     respond_to do |format|
     format.html # new.html.erb 
@@ -26,14 +26,13 @@ class DoctorsController < ApplicationController
 
   def signedinuserdoctor
     @doctor = Doctor.find_by_user_id(current_user.id) 
-    session[:doctor_id] = @doctor.id
+    
     if @doctor.nil?
       redirect_to "/doctors/new"
     else
       @doctor = Doctor.find_by_user_id(current_user.id) 
-      session
+      session[:doctor_id] = @doctor.id
       redirect_to "/doctors/#{@doctor.id}" 
-
     end
   end
 
@@ -49,6 +48,7 @@ class DoctorsController < ApplicationController
 
     respond_to do |format|
       if @doctor.save
+        session[:doctor_id] = @doctor.id
         format.html { redirect_to @doctor, notice: 'Doctor was successfully created.' }
         format.json { render :show, status: :created, location: @doctor }
       else

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :allergies
-  resources :prescriptions
+  
+  # resources :prescriptions
   resources :doctors
   resources :medical_records 
 # end
@@ -13,21 +13,20 @@ Rails.application.routes.draw do
 
   root to: 'pages#index'
 
+
   resources :patients do
+  	resources :medical_records  
+  end
+
+  resources :medical_records do
+    resources :prescriptions 
+  end
+
+   resources :patients do
     resources :allergies
   end
   
-
-  resources :patients do
-  	resources :medical_records do   
-    end
-  end
-  
-    resources :medical_records do 
-        resources :prescriptions
-    end
-  
-  resources :patients
+  # resources :patients
 	devise_for :users
 
 	devise_scope :user do

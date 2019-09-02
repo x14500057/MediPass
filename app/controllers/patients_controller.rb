@@ -4,7 +4,11 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
-    @patients = Patient.search(params[:search])
+    @patients = Patient.all
+    
+    search = params[:search]
+    # category = params[:category]
+    @patients = Patient.all.search(search)
   end
 
   # GET /patients/1
@@ -12,11 +16,11 @@ class PatientsController < ApplicationController
   def show
 
     patient = Patient.find(params[:id])
+    session[:patient_id] = patient.id
     @patient = PatientDecorator.new(patient)
     @medical_records = @patient.medical_records 
     @allergies = @patient.allergies 
-    session[:patient_id] = patient.id
-    puts("\n\n\n"+patient.id.to_s+"\n\n\n")
+    
   end
 
   # GET /patients/new
@@ -36,39 +40,62 @@ class PatientsController < ApplicationController
   end
 
   def signedinuserpatient
-    patient = Patient.find_by_user_id(current_user.id) 
-    if patient.nil?
+    @patient = Patient.find_by_user_id(current_user.id) 
+    if @patient.nil?
       redirect_to "/patients/new"
     else
-      @patient = Patient.find_by_user_id(current_user.id) 
       redirect_to "/patients/#{@patient.id}" 
+      flash[:info] = "Logged in as patient: " +@patient.firstname
     end
   end
 
   # POST /patients
   # POST /patients.json
+
   def create
+    # result = CreatePatientProfile.call(Patient.new(patient_params))
+    # if result.success?
+
     @patient = Patient.new(patient_params)
 
     respond_to do |format|
       if @patient.save
-        flash[:info] = "Invalid email or password"
-        format.html { redirect_to @patient, notice: 'Patient was successfully created.' }
-        
-        format.json { render :show, status: :created, location: @patient }
+        format.html { redirect_to @patient }
+        flash[:success] = "Thank you "+@patient.firstname+". Your account has been setup."
       else
-        format.html { render :new }
-        format.json { render json: @patient.errors, status: :unprocessable_entity }
-      end
+      format.html { render :new }
+      format.json { render json: @patient.errors, status: :unprocessable_entity }
     end
   end
+  end
+
+  
+
+
+  # def create
+  #   @patient = Patient.new(patient_params)
+
+  #   respond_to do |format|
+  #     if @patient.save
+        
+  #       format.html { redirect_to @patient }
+  #       flash[:success] = "Thank you "+@patient.firstname+". Your account has been setup."
+        
+  #       format.json { render :show, status: :created, location: @patient }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @patient.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /patients/1
   # PATCH/PUT /patients/1.json
   def update
     respond_to do |format|
       if @patient.update(patient_params)
-        format.html { redirect_to @patient, notice: 'Patient was successfully updated.' }
+        format.html { redirect_to @patient}
+        flash[:success] = "Patient profile was successfully updated."
         format.json { render :show, status: :ok, location: @patient }
       else
         format.html { render :edit }

@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-7" ">
         <div class="card shadow mb-4">
@@ -37,5 +36,5 @@
 <h2 class="subtitle is-5"><strong><%= @medical_record.prescriptions.count %></strong> Prescriptions</h2>
 
 <div class="col-6">
-   <%= render @medical_record.prescriptions %>
+   <%= render(:partial => 'prescriptions/prescription', :collection => @medical_record.prescriptions) || 'No prescriptions available' %>
 </div>

@@ -1,21 +1,15 @@
-<p id="notice"><%= notice %></p>
-
-<%= render @allergies %>
-
-
 <div class="container">
-  <div class="card shadow mb-4">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary"><%= @patient.firstname %>'s Profile</h6>
     </div>
     <div class="card-body">
         
-            <hr>
-            <p>First Name</p>
+            
+            <p>Name</p>
             <b><%= @patient.fullname %></p></b>
-            <hr>
-            <p>Last Name</p>
-            <b><%= @patient.surname %></b>
             <hr>
             <p>Phone Number</p>
             <b><%= @patient.phone_number %></b>
@@ -29,16 +23,48 @@
             
 
         <% if user_doctor? %> 
-
-            <%= link_to 'Add Medical Record', new_patient_medical_record_path(@patient), :class=> 'btn btn-success' %>
-
-        <% end %>
+          <%= link_to 'Add Medical Record', new_patient_medical_record_path(@patient), :class=> 'btn btn-success' %>
+        <% else %>
             <%= link_to 'Edit', edit_patient_path(@patient), :class => 'btn btn-info' %>
             <%= link_to 'Destroy', @patient, method: :delete, :class=> 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
+
+        <% end %>
 
               
     </div>
   </div>
+    </div>
+    <div class="col-sm">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Allergies: <%= @patient.allergies.count %></h6>
+        </div>
+        <div class="card-body">
+
+
+           
+          <ul class="list-group">
+            <%= render(:partial => 'allergies/allergy', :collection => @patient.allergies) || 'You have no allergies' %>
+          </ul>
+          <br>
+          <% if user_patient? %> 
+          <hr>
+          <%= render 'allergies/form' %>
+   
+
+        <% end %>       
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+  
 
   <div class="container-fluid"style=" width:96%; ">
 
@@ -47,12 +73,11 @@
       
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
-    <div class="col-sm-12 col-md-6">
-      <div id="dataTable_filter" class="dataTables_filter">
-        <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label>
-      </div>
-            
-    </div>
+    <div class="row">
+
+      
+  
+    </div><!-- row -->
     <div class="card-body">
       <div class="table-responsive">
         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">

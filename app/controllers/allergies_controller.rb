@@ -4,7 +4,8 @@ class AllergiesController < ApplicationController
   # GET /allergies
   # GET /allergies.json
   def index
-    @allergies = Allergy.all
+    patient = Patient.find_by(params[session[:patient_id]])
+    allergies = @patient.allergies
   end
 
   # GET /allergies/1
@@ -21,21 +22,32 @@ class AllergiesController < ApplicationController
   def edit
   end
 
+  
+
+
   # POST /allergies
   # POST /allergies.json
   def create
-    @allergy = Allergy.new(allergy_params)
 
-    respond_to do |format|
-      if @allergy.save
-        format.html { redirect_to @allergy, notice: 'Allergy was successfully created.' }
-        format.json { render :show, status: :created, location: @allergy }
-      else
-        format.html { render :new }
-        format.json { render json: @allergy.errors, status: :unprocessable_entity }
-      end
-    end
+    #grab the medical record object by its id and store in local variable
+        # @patient_id = MedicalRecord.find(params[:medical_record_id])
+
+        #grab the associated patient by find the id sotred in the session
+        @patient = Patient.find_by(params[session[:patient_id]])
+
+        #grab all allergies associated with the patient
+        @allergies = @patient.allergies
+
+  
+          @allergies = @patient.allergies.create(params[:allergy].permit(:allergy_name))
+          redirect_to patient_path(@patient)
+          flash[:success] = " Prescription successfully added"
+      
+
   end
+
+
+  
 
   # PATCH/PUT /allergies/1
   # PATCH/PUT /allergies/1.json
@@ -54,11 +66,13 @@ class AllergiesController < ApplicationController
   # DELETE /allergies/1
   # DELETE /allergies/1.json
   def destroy
-    @allergy.destroy
-    respond_to do |format|
-      format.html { redirect_to allergies_url, notice: 'Allergy was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+
+    @patient = Patient.find(params[:patient_id])
+        @allergy = @patient.allergies.find(params[:id])
+        @allergy.destroy
+        flash[:success] = " Allergy successfully deleted"
+        redirect_to patient_path(@patient)
+     
   end
 
   private

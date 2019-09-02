@@ -12,12 +12,23 @@ class PrescriptionsController < ApplicationController
         @patient = Patient.find_by(params[session[:patient_id]])
 
         #grab all allergies associated with the patient
-        @allergies = Allergy.all
+        @allergies = @patient.allergies
 
         #grab the result from the check_allergy method by passing in two parameters;
         #1. the prescribed drug
         #2. the patients allergies
-        @result = Checkallergy.check_allergy("adderall", @allergies)
+
+        @allergies.each do |allergy| 
+            puts("\n"+allergy.allergy_name.to_s+"\n")
+        end
+        
+        
+
+        drug_name = prescription_params[:drug_name]
+
+        puts("\n\n"+drug_name)
+
+        @result = Checkallergy.check_allergy("#{drug_name}", @allergies)
         puts("\n\n response:"+ @result.to_s+"\n\n")
 
         #set the status code and status message to local variables accordingly
@@ -28,7 +39,7 @@ class PrescriptionsController < ApplicationController
 
         puts("\n\n message:"+ @status_message+"\n\n")
 
-        if @status_code.eql? 0
+        if @status_code.eql? 1
            respond_to do |format|
            format.html { redirect_to @medical_record }
            flash[:danger] = @status_message
@@ -36,7 +47,7 @@ class PrescriptionsController < ApplicationController
         else
           @prescriptions = @medical_record.prescriptions.create(params[:prescription].permit(:drug_name, :drug_strength, :drug_code))
           redirect_to medical_record_path(@medical_record)
-          flash[:success] = @status_message
+          flash[:success] = "Prescription successfully added: "+@status_message
         end
 
         
@@ -61,7 +72,7 @@ class PrescriptionsController < ApplicationController
         @medical_record = MedicalRecord.find(params[:medical_record_id])
         @prescription = @medical_record.prescriptions.find(params[:id])
         @prescription.destroy
-
+        flash[:success] = " Prescription successfully deleted"
         redirect_to medical_record_path(@medical_record)
     end
 

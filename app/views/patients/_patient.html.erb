@@ -2,7 +2,7 @@
   <td class=""><%= patient.id %></td>
   <td class="sorting_1"><%= patient.firstname %></td>
   <td>Dr.<%= patient.surname %></td>
-  <td></td>
+  <td><%= patient.user.try(:email)  %></td>
   <td><%= patient.datebirth %></td>
   <td><%= link_to 'Show', patient_path(patient) %></td>
   <td><%= link_to 'Edit', edit_patient_path(patient) %></td>

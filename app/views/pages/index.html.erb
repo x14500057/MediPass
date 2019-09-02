@@ -1,6 +1,7 @@
 <div class="container" id="sign-up-form">
 
     <h1>Welcome to MediPass</h1>
+    <br>
     <h3>What would you like to do?</h3>
     <hr><br>
 
@@ -10,7 +11,7 @@
     			<div class="card" style="width: 18rem;">
 					<div class="card-body">
 						<h5 class="card-title">Sign In</h5>
-						<%= link_to('Sign In', new_user_session_path) %>
+						<%= link_to('Sign In', new_user_session_path, class: 'sign_in_btn') %>
 					</div>
 				</div>
 			</div>
@@ -18,7 +19,7 @@
     			<div class="card" style="width: 18rem;">
 					<div class="card-body">
 						<h5 class="card-title">Register</h5>
-						<%= link_to('Register', new_user_registration_path) %>
+						<%= link_to('Register', new_user_registration_path, class: 'sign-up-btn') %>
 					</div>
 				</div>
 			</div>

@@ -19,32 +19,31 @@
 
   <body>
 
-    <div>
-    <%= render 'layouts/side_navigation' %>
-    </div>
+      <div>
+        <% if user_signed_in? %>
+        <%= render 'layouts/side_navigation' %>
+        <% end %>
+      </div>
 
       <div class="container">
         <br>
-       
         <% flash.each do |key, value| %>
           <div class="alert alert-<%= key %>"><%= value %></div>
         <% end %>
         <%= yield %>
-        
     </div>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    
 
   
 
     
 
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- example CDN-- you may choose another source --> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- example CDN-- you may choose another source --> 
   <script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/17.0.3/autocomplete-lhc.min.js'></script>
 
   <script>
     // Create drug list for the name field
-    new Def.Autocompleter.Search('rxterms',
+    new Def.Autocompleter.Search('rxterms1',
       'https://clinicaltables.nlm.nih.gov/api/rxterms/v3/search?ef=STRENGTHS_AND_FORMS,RXCUIS');
       
     // Create an initially empty list for the strength field
@@ -52,7 +51,37 @@
       
     // Populate the strength list after the user selects a drug name
     Def.Autocompleter.Event.observeListSelections('rxterms', function() {
-      var drugField = $('#rxterms')[0];
+      var drugField = $('#rxterms1')[0];
+      var drugField2 = $('#rxterms2')[0];
+      
+      var drugName = drugField.value;
+      var drugAutocomp = drugField.autocomp;
+      var strengths = drugAutocomp.getItemExtraData(drugName)['STRENGTHS_AND_FORMS'];
+      alert(strengths);
+      var rxcuis = drugAutocomp.getItemExtraData(drugName)['RXCUIS'];
+      if (strengths)
+        $('#drug_stry')[0].autocomp.setListAndField(strengths, rxcuis);
+    });
+
+    // Fill in the RxCUI field after the user selects a strength
+
+    Def.Autocompleter.Event.observeListSelections('drug_str', function(data) {
+      $('#rxcui')[0].value = data.item_code;
+    })
+  </script>
+
+  <script>
+    // Create drug list for the name field
+    new Def.Autocompleter.Search('rxterms2',
+      'https://clinicaltables.nlm.nih.gov/api/rxterms/v3/search?ef=STRENGTHS_AND_FORMS,RXCUIS');
+      
+    // Create an initially empty list for the strength field
+    new Def.Autocompleter.Prefetch('drug_str', []);
+      
+    // Populate the strength list after the user selects a drug name
+    Def.Autocompleter.Event.observeListSelections('rxterms', function() {
+      var drugField = $('#rxterms2')[0];
+      
       var drugName = drugField.value;
       var drugAutocomp = drugField.autocomp;
       var strengths = drugAutocomp.getItemExtraData(drugName)['STRENGTHS_AND_FORMS'];

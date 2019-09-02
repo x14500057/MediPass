@@ -1,0 +1,11 @@
+<div class="col-sm-12">
+  <%= form_tag(send("medical_records_path"), 
+               :method => "get", 
+               id: "search-form") do %>
+    <i class="fa fa-search" aria-hidden="true"></i>
+    <%= text_field_tag  :search, 
+                        params[:search], 
+                        placeholder: "search key words e.h heart, lung, brain", 
+                        class: "form-control" %>
+  <% end %>
+</div><!-- col-sm-12 -->

@@ -1,22 +1,15 @@
-class PostsForBranchService
-  def initialize(params)
-    @search = params[:search]
-    @category = params[:category]
-    @branch = params[:branch]
+# app/services/tweet_creator.rb
+class CreatePatientProfile < ApplicationService
+  attr_reader :patient
+  
+  def initialize(patient)
+    @patient = patient
   end
 
-  # get posts depending on the request
   def call
-    if @category.blank? && @search.blank?
-      posts = Post.by_branch(@branch).all
-    elsif @category.blank? && @search.present?
-      posts = Post.by_branch(@branch).search(@search)
-    elsif @category.present? && @search.blank?
-      posts = Post.by_category(@branch, @category)
-    elsif @category.present? && @search.present?
-      posts = Post.by_category(@branch, @category).search(@search)
-    else
-    end
+    return nil unless @patient.save
+    return true
   end
-
+    
+  end
 end
