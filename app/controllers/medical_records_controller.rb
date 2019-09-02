@@ -6,6 +6,8 @@ class MedicalRecordsController < ApplicationController
 
     @patient = Patient.find_by(params[session[:patient_id]])
     @medical_records = @patient.medical_records
+    @medical_records = @patient.medical_records.search(search)
+    # @medical_records = @patient.medical_records.search(search)
     # search = params[:search]
     # # category = params[:category]
     # @medical_records = MedicalRecord.all.search(search)
