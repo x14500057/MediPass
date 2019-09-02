@@ -22,9 +22,6 @@ class AllergiesController < ApplicationController
   def edit
   end
 
-  
-
-
   # POST /allergies
   # POST /allergies.json
   def create
@@ -42,8 +39,7 @@ class AllergiesController < ApplicationController
           @allergies = @patient.allergies.create(params[:allergy].permit(:allergy_name))
           redirect_to patient_path(@patient)
           flash[:success] = " Prescription successfully added"
-      
-
+    
   end
 
 
