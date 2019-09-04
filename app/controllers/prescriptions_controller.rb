@@ -50,9 +50,6 @@ class PrescriptionsController < ApplicationController
           flash[:success] = "Prescription successfully added: "+@status_message
         end
 
-        
-
-
 
     # respond_to do |format|
     #   if @medical_record.save

@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-7" ">
+    <div class="col-lg" >
         <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Issued By Dr.<%= @medical_record.doctor.firstname %></h6>
@@ -24,17 +24,16 @@
         </div>
     </div>
 
-    
+    <% if user_doctor? %>
       <div class="col-4">
-    
-      <%= render 'prescriptions/form' %>
-  
+        <%= render 'prescriptions/form' %>
     </div>
+    <% end %>
 
 </div>
 
 <h2 class="subtitle is-5"><strong><%= @medical_record.prescriptions.count %></strong> Prescriptions</h2>
 
-<div class="col-6">
+<div class="col-12">
    <%= render(:partial => 'prescriptions/prescription', :collection => @medical_record.prescriptions) || 'No prescriptions available' %>
 </div>
